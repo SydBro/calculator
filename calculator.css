@@ -15,6 +15,7 @@
 #buttons {
     display: flex;
     width: 150px;
+    margin: 10px;
 }
 
 #operators {
@@ -25,6 +26,14 @@
 #numbers {
     display: flex;
     flex-wrap: wrap;
+}
+
+#editng-btn {
+    margin: 10px;
+}
+
+.clear, .back {
+    width: 75px;
 }
 
 button {
