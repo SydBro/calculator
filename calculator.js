@@ -3,10 +3,11 @@ const numbers = document.querySelectorAll(".number");
 const btns = document.querySelectorAll("button");
 const display = document.querySelector("output");
 const eqls = document.querySelector("#equals");
+const clear = document.querySelector(".clear");
+const back = document.querySelector(".back");
 let firstNum;
 let nextNum;
 let operator;
-let equation;
 
 const add = function(num1, num2){
     return num1 + num2;
@@ -47,29 +48,32 @@ btns.forEach((button) => {
 
         if (button.className == "number")
         {
+            if (display.textContent == (firstNum || nextNum))
+            {
+                display.textContent = "";
+            }
             display.textContent += button.textContent;
         }
 
         if (button.className == "operator")
         {
-            // if ((operator && firstNum && nextNum) != ("" || null))
-            // {
-            //     firstNum = operate(operator, firstNum, nextNum);
-            //     nextNum = Number(display.textContent);
-            //     operator = button.textContent;
-            //     display.textContent = "";
-            //     console.log(operator, firstNum, nextNum)
-            // }
             if ((display.textContent == (null || "") && firstNum == (null || "")))
             {
                 firstNum = 0;
+            }
+            if ((operator && firstNum && nextNum) != ("" || null))
+            {
+                nextNum = Number(display.textContent);
+                operator = button.textContent;
+                display.textContent = "";
+                console.log(operator, firstNum, nextNum)
             }
             if ((operator && firstNum) != ("" || null))
             {
                 nextNum = Number(display.textContent);
                 firstNum = operate(operator, firstNum, nextNum);
                 operator = button.textContent;
-                display.textContent = "";
+                display.textContent = firstNum;
                 console.log(operator, firstNum, nextNum)
             }
             else {
@@ -79,7 +83,6 @@ btns.forEach((button) => {
                 console.log(operator, firstNum, nextNum)
             }
         }
-        console.log(display.textContent)
 
     })
 })
@@ -91,7 +94,19 @@ eqls.addEventListener("click", (e) => {
     }
     display.textContent = operate(operator, firstNum, nextNum);
     console.log(operator, firstNum, nextNum)
-    firstNum = "";
-    nextNum = "";
-    operator = "";
+    firstNum = null;
+    nextNum = null;
+    operator = null;
+})
+
+clear.addEventListener("click", (e) => {
+    firstNum = null;
+    nextNum = null;
+    operator = null;
+    display.textContent = "";
+})
+
+back.addEventListener("click", (e) => {
+    lastLetterGone = display.textContent.slice(0,-1);
+    display.textContent = lastLetterGone;
 })
