@@ -19,7 +19,7 @@ body {
 
 #buttons {
     display: flex;
-    width: 300px;
+    width: 330px;
     margin: 20px;
     border-radius: 40px;
 }
@@ -71,7 +71,7 @@ button {
     border: none;
 }
 
-button:hover {
+button:hover, #equals:hover, #edit-btn:hover {
     background-color: teal;
 }
 
@@ -86,5 +86,8 @@ output {
     padding: 10px;
     background-color: white;
     border-radius: 20px;
-    font-size: 40px;
+    font-size: 60px;
+    text-align: right;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: scroll;
 }
