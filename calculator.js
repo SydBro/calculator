@@ -8,6 +8,7 @@ const back = document.querySelector(".back");
 let firstNum;
 let nextNum;
 let operator;
+let equation = [];
 
 const add = function(num1, num2){
     return num1 + num2;
@@ -33,7 +34,7 @@ function operate(operator, num1, num2) {
         case "÷":
             return divide(num1, num2);
         default:
-            return "Nothing happened.";
+            return alert("Something went wrong. \nPress 'Clear' and try again.");
     }
 };
 
@@ -45,44 +46,44 @@ numbers.forEach((button) => {
     })
 })
 
+//takes the previous two number values and solves that equation
+//before assigning a new value to the operator & second number
 operators.forEach((button) => {
     button.addEventListener("click", (e) => {
-        if ((operator && firstNum) != ("" || null))
+        if ((operator && firstNum) != null)
         {
             nextNum = Number(display.textContent);
             display.textContent = "";
             firstNum = operate(operator, firstNum, nextNum);
             operator = button.textContent;
-            nextNum = "";
-            console.log(operator, firstNum, nextNum)
+            nextNum = null;
         }
         else {
             firstNum = Number(display.textContent);
             operator = button.textContent;
             display.textContent = "";
-            console.log(operator, firstNum, nextNum)
         }
     })
 })
 
+//solves the equation
 eqls.addEventListener("click", (e) => {
-    if (firstNum != null && nextNum == "")
+    if (firstNum != null && nextNum == null)
     {
         nextNum = Number(display.textContent);
     }
     display.textContent = operate(operator, firstNum, nextNum);
-    console.log(operator, firstNum, nextNum)
-    firstNum = "";
-    nextNum = "";
-    operator = undefined;
+    firstNum = null;
+    nextNum = null;
+    operator = null;
 })
 
 //done
 //clears every value and display
 clear.addEventListener("click", (e) => {
-    firstNum = "";
-    nextNum = "";
-    operator = undefined;
+    firstNum = null;
+    nextNum = null;
+    operator = null;
     display.textContent = "";
 })
 
